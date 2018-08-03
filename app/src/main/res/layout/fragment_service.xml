@@ -1,0 +1,80 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:text="Free Home Delivery"/>
+    <View
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:lineSpacingExtra="8dp"
+        android:text="          All the products manufactured and distributed by the Company are available for Free home delivery without any additional cost. Every week, or customer given time, the salesman will call at your house or business premises and deliver the products that you need at your very doorstep.Just call our telephone number any time of the day .For availing of this service."/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:text="Sanitization of coolers"/>
+    <View
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:lineSpacingExtra="8dp"
+        android:text="          Our coolers purchased from the Company require occasional sanitization to maintain the purity and freshness of water. This is because the inside of the cooler, particularly water channels, can collect and harbor bacteria from air or surrounding environment over a period time. No matter how clean your kitchen or environment in which the cooler is placed, airborne bacteria eventually enters the water system and can pollute it, causing odour, or in some extreme cases, illness. We are one of the few companies that offer a complete sanitization programme for your coolers at a very moderate charge.We recommend that coolers be sanitized every 3 months.
+"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="8dp"
+        android:padding="15dp"
+        android:text="          Just call our telephone number 23219162 and set up an appointment. Our salesman will collect your cooler from your premises, give you a temporary replacement and return your cooler after sanitization, usually within a period of one week.
+" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:text="Freezer And Cold Water 200ML Supply
+"/>
+    <View
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:lineSpacingExtra="8dp"
+        android:text="          We have cold room facility for cold water required customers. We are giving Freezer vehicle per day rent basis with water or without water
+
+"/>
+
+</LinearLayout>
+</ScrollView>

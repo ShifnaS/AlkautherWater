@@ -1,0 +1,86 @@
+package com.example.alkautherwater.fragments;
+
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.alkautherwater.R;
+import com.example.alkautherwater.adapter.GalleryAdapter;
+import com.example.alkautherwater.api.APIService;
+import com.example.alkautherwater.api.APIUrl;
+import com.example.alkautherwater.model.Image;
+import com.example.alkautherwater.model.Result;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+
+public class ProductsFragment extends Fragment {
+    private String TAG = ProductsFragment.class.getSimpleName();
+    private ProgressDialog pDialog;
+    private GalleryAdapter mAdapter;
+    private RecyclerView recyclerView;
+
+    public ProductsFragment() {
+        // Required empty public constructor
+    }
+    // TODO: Rename parameter arguments, choose names that match
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View root=  inflater.inflate(R.layout.fragment_products, container, false);
+        recyclerView =  root.findViewById(R.id.recycler_view);
+
+        pDialog = new ProgressDialog(getContext());
+        getProducts();
+        return root;
+    }
+
+
+    private void getProducts() {
+        pDialog.setMessage("Downloading json...");
+        pDialog.show();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(APIUrl.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        APIService service = retrofit.create(APIService.class);
+        Call<Result> call = service.getProduct();
+
+        call.enqueue(new Callback<Result>() {
+            @Override
+            public void onResponse(Call<Result> call, Response<Result> response) {
+
+                pDialog.hide();
+                mAdapter = new GalleryAdapter(getContext(), response.body().getItem());
+                RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
+                recyclerView.setLayoutManager(mLayoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+                // Toast.makeText(MainActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
+                pDialog.hide();
+            }
+        });
+
+    }
+
+
+}

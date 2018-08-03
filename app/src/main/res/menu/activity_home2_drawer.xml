@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_about"
+            android:title="About Us" />
+        <item
+            android:id="@+id/nav_services"
+            android:title="Services" />
+        <item
+            android:id="@+id/nav_products"
+            android:title="Products" />
+        <item
+            android:id="@+id/nav_order"
+            android:title="Place Order" />
+        <item
+            android:id="@+id/nav_contact"
+            android:title="Contact Us" />
+    </group>
+
+    <item android:title="Terms and Conditions">
+        <menu>
+
+            <item
+                android:id="@+id/nav_qac"
+                android:title="QAC" />
+            <item
+                android:id="@+id/nav_faq"
+                android:title="FAQ" />
+
+        </menu>
+    </item>
+
+</menu>

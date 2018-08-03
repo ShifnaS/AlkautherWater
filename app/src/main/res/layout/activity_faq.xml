@@ -1,0 +1,305 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.alkautherwater.ServiceFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="1.What is mineral water and how this is different from any other water?"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          All potable waters are normally expected to meet the hydration needs of an individual.  Mineral water is superior because not only does it provide hydration needs, but it also replenishes many minerals which are lost during normal exercise.  Mineral water also replenishes electrolytes that help in proper body functioning." />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="2.What minerals does my body need?"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          Our body needs to be replenished with large variety of minerals which are lost due to the process of staying alive and the exercise that all of us do in our day-to-day life.  Those who undertake acrobatics or other rigorous exercises obviously need larger dose of minerals than people leading sedentary life styles.  The US government has developed a Recommended Daily Allowance (RDA) of essential minerals based on an average life style.
+" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="   Balanced mineral contents are as below:" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+
+            android:stretchColumns="1">
+
+            <TableRow android:background="@color/colorPrimary">
+
+                <TextView
+                    android:textColor="#FFF"
+                    android:padding="3dip"
+                    android:text="Minerals"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:textColor="#FFF"
+
+                    android:padding="3dip"
+                    android:gravity="center"
+                    android:text="Typical values for AL KAUTHER water (mg/l)"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow android:background="#f0f0f0">
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="PH" />
+
+                <TextView
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="7.2" />
+            </TableRow>
+
+            <TableRow android:background="@color/colorBack">
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="TDS" />
+
+                <TextView
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="95" />
+            </TableRow>
+
+            <TableRow android:background="#f0f0f0"
+                >
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="Calcium" />
+
+                <TextView
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="9" />
+            </TableRow>
+
+            <TableRow android:background="@color/colorBack">
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="Magnesium" />
+
+                <TextView
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="1" />
+            </TableRow>
+
+            <TableRow android:background="#f0f0f0">
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="Sodium" />
+
+                <TextView
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="4" />
+            </TableRow>
+
+            <TableRow android:background="@color/colorBack">
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="Pottasium" />
+
+                <TextView
+                    android:gravity="center"
+                    android:padding="3dip"
+                    android:text="0.5" />
+            </TableRow>
+
+
+        </TableLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="3.Does mineral water taste differently from other types of water?
+"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          Absolutely!  The quality and quantity of minerals in every genuine mineral water brand is different and unique, as it depends on the source of water.  These minerals impart a taste to water which is lacking in distilled water or other de-mineralized water. In fact it is this taste that makes mineral water an attractive option to drink, as distilled or other similar chemically purified waters are totally tasteless and often fail to quench thirst, because of their lack of body.
+" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="3.Does mineral water taste differently from other types of water?
+"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          Absolutely!  The quality and quantity of minerals in every genuine mineral water brand is different and unique, as it depends on the source of water.  These minerals impart a taste to water which is lacking in distilled water or other de-mineralized water. In fact it is this taste that makes mineral water an attractive option to drink, as distilled or other similar chemically purified waters are totally tasteless and often fail to quench thirst, because of their lack of body.
+" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="4.Is it safe to use mineral water for food preparation?
+"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          Mineral waters of reputed brands, which have been bottled in accordance with international regulations and packed hygienically such as JEBEL SAMHAN, AL KAUTHER, are absolutely safe to use for cooking.  As a consumer you need to satisfy yourself that the product which you are buying is indeed natural mineral water.  In some parts of the world, regulations on labeling requirements of bottled water are quite vague and many brands, which are actually processed water, try to pass themselves off as natural mineral water. The most effective way of safeguarding against being misled is to check the source of water.  For example, products which have been bottled in industrial estates or city locations are invariably processed water or bottled drinking water and not natural mineral water.
+" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          Mineral water is absolutely safe for cooking, mixing of beverages and preparation of baby foods.  On boiling mineral water, it is usual for some of the minerals to be precipitated and these can often appear as white particles in the water.  Such particles should not cause any concern or worry.  The ability of water to hold minerals in suspension decreases as temperature of the water increases and so some of the minerals are precipitated when the water is heated.
+" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="5.What benefits do I derive from drinking mineral water?"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          As explained in earlier sections, mineral water, as its name indicates, is water with minute quantities of minerals held in suspension.  While the number of minerals in natural mineral water is quite large, the positive effects of major minerals on health can be understood more fully by reading our chapter on Source.
+" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="6.How much mineral water should I drink daily?"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          The intake of water varies widely from person to person.  If depends on lifestyle, ambient temperature, food habits and many such variables.  Research in the US has established that at least 8 glasses (250 ml) of water is the minimum quantity that needs to be drunk daily.  You may have to adjust this quantity upwards if you do vigorous exercise, work outdoors or live in hot and dry environments and if you are pregnant or a lactating mother." />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="7.How can I obtain your mineral water?"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          Our Company produces mineral water in 2 brands – JEBEL SAMAHAN, AL KAUTHER. Such as 5 Gallon refilling bottles,5 gallon(20 Liters) disposable bottles, 8 Liter bottles, 6 Liter bottles. These brands are widely distributed in Salalah and half part of Oman.  If you are unable to find our brand in your nearest supermarket or Free deliveries at home in Salalah and Dhofar regions, please contact us on our office Telephone no. 23219162, 23219585 or Fax: 23219163. Friendly, informed sales personnel will contact you immediately to fulfill your needs and answer any questions." />
+
+    </LinearLayout>
+</ScrollView>

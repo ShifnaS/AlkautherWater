@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">AlkautherWater</string>
+    <string name="title_activity_home1">Home1Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>About Us</item>
+        <item>Services</item>
+        <item>Products</item>
+        <item>Place Order</item>
+        <item>Contact Us</item>
+
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

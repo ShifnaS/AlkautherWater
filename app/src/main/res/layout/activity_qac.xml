@@ -1,0 +1,74 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.alkautherwater.QAC">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Quality Control"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          Quality control is not just another function in the Company. It is the pillar around which the Company has been built. It is on the strength of the products’ quality that our water reputation has been built over so many years. Millions of consumers have placed their trust in our water because of its excellent quality. Every aspect of production process passes through multiple quality checks.
+" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          Raw water from each well is analyzed daily to ensure that there are no forbidden bacteria such as coli form or streptococci.
+" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          Company’s trained quality control engineers examine samples at random from every hour of production and check for composition.
+" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          PET raw material is tested for moisture and Acetaldehyde, using sophisticated moisture measuring devices and gas chromatograph. Performs and bottles are tested for dimensional stability and wall thickness. The strength of bottle is also tested at random using top load testers.
+" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          Raw materials such as cartons and labels are tested for weight, gram mage and other technical specifications before being used for production.
+" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:padding="15dp"
+            android:text="          A fully equipped microbiological laboratory ensures that quality of water is tested for all bacteria as per Omani standards as well as other International standards. Chemical composition is also tested through photometers and supplemented through external testing at Ministry of Commerce’s laboratory in Salalah. So far the Company’s products have never failed in any of these tests in its long history.
+" />
+
+
+    </LinearLayout>
+</ScrollView>

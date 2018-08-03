@@ -1,0 +1,40 @@
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textStyle="bold"
+    android:padding="10dp"
+    android:textSize="20sp"
+    android:textColor="@color/colorPrimary"
+    android:text="Company Profile"
+    />
+<View
+    android:background="@color/colorPrimaryDark"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:lineSpacingExtra="8dp"
+        android:text="          AL KAUTHER, the leading producer of pure natural mineral water in the Salalah, was established in 2000. As a unique brand that has been holding the market leadership for the past 12 years, AL KAUTHER has today become a generic name for mineral and bottled water in the entire Salalah region. It has acquired this status symbol by providing world-class products known for their pure natural freshness. AL KAUTHER aims to strengthen its market leadership by constantly enhancing the excellence of its product through a process of continuous reinvestment and innovative manufacturing and marketing strategies. AL KAUTHER popularity in the region is largely due to its commitment to delivering superior quality products.
+"/>
+    <TextView
+        android:lineSpacingExtra="8dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+
+        android:text="          AL KAUTHER Water is completely natural water. It has been tested and endorsed by all key regulatory and industry authorities. As a forward-looking company Kauther Al Janoob has focused its future on innovation and business excellence. Our next division is Kauther Plastics. We are producing Pet preforms, Polyethylene caps and other polyethylene products as per client requirements
+"/>
+</LinearLayout>
+</ScrollView>
