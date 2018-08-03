@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 
 public interface APIService {
 
-    @GET("GetProduct")
+    @GET("Alkautherlogin/productdetails_json.php")
     Call<Result> getProduct();
 
 }

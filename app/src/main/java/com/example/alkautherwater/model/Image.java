@@ -6,29 +6,31 @@ import java.io.Serializable;
  * Created by Lincoln on 04/04/16.
  */
 public class Image implements Serializable{
-    private String name;
+    private String Productname;
     private String image;
-    private int id;
+    private int product_id;
     private String specification;
     private String price;
-
-    public Image(String name, String image, int id, String specification, String price) {
-        this.name = name;
-        this.image = image;
-        this.id = id;
-        this.specification = specification;
-        this.price = price;
-    }
+    private String Unit;
 
     public Image() {
     }
 
-    public String getName() {
-        return name;
+    public Image(String productname, String image, int product_id, String specification, String price, String unit) {
+        Productname = productname;
+        this.image = image;
+        this.product_id = product_id;
+        this.specification = specification;
+        this.price = price;
+        Unit = unit;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getProductname() {
+        return Productname;
+    }
+
+    public void setProductname(String productname) {
+        Productname = productname;
     }
 
     public String getImage() {
@@ -39,12 +41,12 @@ public class Image implements Serializable{
         this.image = image;
     }
 
-    public int getId() {
-        return id;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
     public String getSpecification() {
@@ -61,5 +63,13 @@ public class Image implements Serializable{
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getUnit() {
+        return Unit;
+    }
+
+    public void setUnit(String unit) {
+        Unit = unit;
     }
 }

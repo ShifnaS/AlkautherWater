@@ -61,7 +61,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.thumbnail);
-        holder.tv.setText(image.getName());
+        holder.tv.setText(image.getProductname());
     }
 
     @Override
