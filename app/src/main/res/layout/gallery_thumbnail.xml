@@ -2,11 +2,10 @@
 <com.example.alkautherwater.helper.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBack"
     android:orientation="vertical">
 
     <ImageView
-        android:padding="10dp"
+        android:padding="1dp"
         android:id="@+id/thumbnail"
         android:layout_width="match_parent"
         android:scaleX="1"
@@ -29,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Alkauther"
             />
-        <Button
+      <!--  <Button
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
@@ -37,6 +36,6 @@
             android:text="Buy Product"
             android:textColor="@color/colorPrimaryDark"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" />-->
     </LinearLayout>
 </com.example.alkautherwater.helper.SquareLayout>

@@ -3,6 +3,7 @@ package com.example.alkautherwater.fragments;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,7 +32,7 @@ public class ProductsFragment extends Fragment {
     private ProgressDialog pDialog;
     private GalleryAdapter mAdapter;
     private RecyclerView recyclerView;
-
+    ArrayList<Image> images;
     public ProductsFragment() {
         // Required empty public constructor
     }
@@ -42,7 +43,7 @@ public class ProductsFragment extends Fragment {
         // Inflate the layout for this fragment
         View root=  inflater.inflate(R.layout.fragment_products, container, false);
         recyclerView =  root.findViewById(R.id.recycler_view);
-
+        images=new ArrayList<>();
         pDialog = new ProgressDialog(getContext());
         getProducts();
         return root;
@@ -72,6 +73,37 @@ public class ProductsFragment extends Fragment {
                 recyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
                 // Toast.makeText(MainActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                images= response.body().getItem();
+
+
+
+                recyclerView.addOnItemTouchListener(new GalleryAdapter.RecyclerTouchListener(getContext(), recyclerView, new GalleryAdapter.ClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("images", images);
+                        bundle.putInt("position", position);
+
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        SlideshowDialogFragment newFragment = SlideshowDialogFragment.newInstance();
+                        newFragment.setArguments(bundle);
+                        newFragment.show(ft, "slideshow");
+                    }
+
+                    @Override
+                    public void onLongClick(View view, int position) {
+
+                    }
+                }));
+
+
+
+
+
+
+
+
             }
 
             @Override

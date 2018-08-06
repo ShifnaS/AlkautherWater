@@ -16,15 +16,13 @@
         <item
             android:id="@+id/nav_products"
             android:title="Products" />
-        <item
-            android:id="@+id/nav_order"
-            android:title="Place Order" />
+
         <item
             android:id="@+id/nav_contact"
             android:title="Contact Us" />
     </group>
 
-    <item android:title="Terms and Conditions">
+    <item android:title="Help Centre">
         <menu>
 
             <item

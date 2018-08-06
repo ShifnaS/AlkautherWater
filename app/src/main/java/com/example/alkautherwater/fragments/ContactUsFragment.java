@@ -3,6 +3,7 @@ package com.example.alkautherwater.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import com.example.alkautherwater.R;
  */
 public class ContactUsFragment extends Fragment {
 
-
+    Toolbar toolbar;
     public ContactUsFragment() {
         // Required empty public constructor
     }
@@ -25,7 +26,11 @@ public class ContactUsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact_us, container, false);
+        View root=inflater.inflate(R.layout.fragment_contact_us, container, false);
+        toolbar=root.findViewById(R.id.toolbar);
+        toolbar.setTitle("Contact Address");
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+        return root;
     }
 
 }

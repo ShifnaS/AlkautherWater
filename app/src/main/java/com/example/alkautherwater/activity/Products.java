@@ -11,13 +11,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.alkautherwater.R;
 import com.example.alkautherwater.fragments.*;
 
-public class Home1Activity extends AppCompatActivity
+public class Products extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
     private Handler mHandler;
@@ -29,9 +28,7 @@ public class Home1Activity extends AppCompatActivity
     private static final String TAG_Services = "services";
     private static final String TAG_CONTACT_US = "contact us";
     private static final String TAG_PRODUCTS = "products";
-    private static final String TAG_PLACE_ORDER= "place order";
-    private static final String TAG_QAC= "qac";
-    private static final String TAG_FAQ= "faq";
+
     public static String CURRENT_TAG = TAG_HOME;
     public static int navItemIndex = 0;
 
@@ -71,14 +68,14 @@ public class Home1Activity extends AppCompatActivity
         }
     }*/
 
-    @Override
+  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home1, menu);
         return true;
-    }
+    }*/
 
-    @Override
+/*    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -91,7 +88,7 @@ public class Home1Activity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
     private void selectNavMenu() {
         navigationView.getMenu().getItem(navItemIndex).setChecked(true);
     }
@@ -166,10 +163,8 @@ public class Home1Activity extends AppCompatActivity
             case 3:
                ProductsFragment productsFragment=new ProductsFragment();
                return  productsFragment;
+
             case 4:
-               PlaceOrderFragment placeOrderFragment=new PlaceOrderFragment();
-               return placeOrderFragment;
-            case 5:
                ContactUsFragment contactUsFragment=new ContactUsFragment();
                return contactUsFragment;
             default:
@@ -204,22 +199,19 @@ public class Home1Activity extends AppCompatActivity
                 navItemIndex = 3;
                 CURRENT_TAG = TAG_PRODUCTS;
                 break;
-            case R.id.nav_order:
-                navItemIndex = 4;
-                CURRENT_TAG = TAG_PLACE_ORDER;
-                break;
+
             case R.id.nav_contact:
-                navItemIndex = 5;
+                navItemIndex = 4;
                 CURRENT_TAG = TAG_CONTACT_US;
                 break;
             case R.id.nav_qac:
                 // launch new intent instead of loading fragment
-                startActivity(new Intent(Home1Activity.this, QAC.class));
+                startActivity(new Intent(Products.this, QAC.class));
                 drawer.closeDrawers();
                 return true;
             case R.id.nav_faq:
                 // launch new intent instead of loading fragment
-                startActivity(new Intent(Home1Activity.this, FAQ.class));
+                startActivity(new Intent(Products.this, FAQ.class));
                 drawer.closeDrawers();
                 return true;
             default:

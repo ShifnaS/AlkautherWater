@@ -26,7 +26,7 @@ public class HomeFragment extends Fragment {
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
-    int IMAGES[] = {R.drawable.s1, R.drawable.s2, R.drawable.s3, R.drawable.s4, R.drawable.s5};
+    int IMAGES[] = { R.drawable.s2, R.drawable.s3, R.drawable.s4};
     MyCustomPagerAdapter myCustomPagerAdapter;
     CirclePageIndicator indicator;
 

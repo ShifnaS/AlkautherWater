@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.Home1Activity"
+            android:name=".activity.Products"
             android:label="@string/title_activity_home1"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.FAQ" />
