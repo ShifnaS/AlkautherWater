@@ -6,6 +6,6 @@ package com.example.alkautherwater.api;
 
 public class APIUrl {
     public static final String BASE_URL = "http://demo.infogateway.co.in/Alkauther/";
-  //  public static final String BASE_URL = "http://192.168.43.245:8051/Alkauther/";
+   public static final String BASE_URL1 = "http://192.168.2.125:8051/Alkauther/";
 //
 }
