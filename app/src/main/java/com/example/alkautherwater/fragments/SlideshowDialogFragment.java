@@ -1,7 +1,13 @@
 package com.example.alkautherwater.fragments;
 
+import android.annotation.TargetApi;
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -12,12 +18,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.alkautherwater.R;
+import com.example.alkautherwater.activity.BuyProductActivity;
 import com.example.alkautherwater.model.Image;
 
 import java.util.ArrayList;
@@ -31,24 +41,32 @@ public class SlideshowDialogFragment extends DialogFragment {
     private MyViewPagerAdapter myViewPagerAdapter;
     private TextView lblCount, lblTitle, lblDate,specification;
     private int selectedPosition = 0;
-   // Toolbar toolbar;
+    Button bt_buy;
+    Toolbar toolbar;
+
     static SlideshowDialogFragment newInstance() {
         SlideshowDialogFragment f = new SlideshowDialogFragment();
         return f;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_image_slider, container, false);
-        viewPager = (ViewPager) v.findViewById(R.id.viewpager);
-        lblCount = (TextView) v.findViewById(R.id.lbl_count);
-        lblTitle = (TextView) v.findViewById(R.id.title);
-        lblDate = (TextView) v.findViewById(R.id.date);
-        specification = (TextView) v.findViewById(R.id.specification);
-      //  toolbar=v.findViewById(R.id.toolbar);
-      //  ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
+
+        viewPager = v.findViewById(R.id.viewpager);
+        lblCount =  v.findViewById(R.id.lbl_count);
+        lblTitle =  v.findViewById(R.id.title);
+        lblDate =  v.findViewById(R.id.date);
+        toolbar=v.findViewById(R.id.toolbar);
+        bt_buy=v.findViewById(R.id.buy);
+        specification = v.findViewById(R.id.specification);
+        toolbar.setTitle("Product Details");
+      // toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+      /// ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         images = (ArrayList<Image>) getArguments().getSerializable("images");
         selectedPosition = getArguments().getInt("position");
 
@@ -60,6 +78,7 @@ public class SlideshowDialogFragment extends DialogFragment {
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
         setCurrentItem(selectedPosition);
+
 
         return v;
     }
@@ -91,19 +110,31 @@ public class SlideshowDialogFragment extends DialogFragment {
     private void displayMetaInfo(int position) {
         lblCount.setText((position + 1) + " of " + images.size());
 
-        Image image = images.get(position);
+        final Image image = images.get(position);
         lblTitle.setText(image.getProductname());
         lblDate.setText("Rs."+image.getPrice()+"/-");
         specification.setText(image.getSpecification());
+
+
+        bt_buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+           //     String id=image.getProduct_id();
+                Intent i=new Intent(getContext(), BuyProductActivity.class);
+                i.putExtra("id",image.getProduct_id());
+                getActivity().startActivity(i);
+            }
+        });
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
     }
 
-    //	adapter
     public class MyViewPagerAdapter extends PagerAdapter {
 
         private LayoutInflater layoutInflater;
@@ -148,4 +179,5 @@ public class SlideshowDialogFragment extends DialogFragment {
             container.removeView((View) object);
         }
     }
+
 }

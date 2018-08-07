@@ -51,7 +51,7 @@ public class ProductsFragment extends Fragment {
 
 
     private void getProducts() {
-        pDialog.setMessage("Downloading json...");
+        pDialog.setMessage("Loading...");
         pDialog.show();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(APIUrl.BASE_URL)
@@ -66,7 +66,7 @@ public class ProductsFragment extends Fragment {
             public void onResponse(Call<Result> call, Response<Result> response) {
 
                 pDialog.hide();
-                mAdapter = new GalleryAdapter(getContext(), response.body().getItem());
+                mAdapter = new GalleryAdapter(getContext(), response.body().getItem(),"product");
                 RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -86,9 +86,13 @@ public class ProductsFragment extends Fragment {
                         bundle.putInt("position", position);
 
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.setCustomAnimations(android.R.anim.fade_in,
+                                android.R.anim.fade_out);
                         SlideshowDialogFragment newFragment = SlideshowDialogFragment.newInstance();
                         newFragment.setArguments(bundle);
                         newFragment.show(ft, "slideshow");
+
+                        //   ft.commitAllowingStateLoss();
                     }
 
                     @Override

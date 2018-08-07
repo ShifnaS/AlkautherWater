@@ -1,6 +1,8 @@
 package com.example.alkautherwater.adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -8,11 +10,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.example.alkautherwater.R;
+import com.example.alkautherwater.helper.SquareLayout;
 import com.example.alkautherwater.model.Image;
 
 import java.util.List;
@@ -27,28 +36,43 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
 
     private List<Image> images;
     private Context mContext;
-
+    private String lay="";
+    ProgressBar progressBar;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView thumbnail;
-        TextView tv;
+        public SquareLayout layout;
+        public TextView tv;
         public MyViewHolder(View view) {
             super(view);
             thumbnail = view.findViewById(R.id.thumbnail);
             tv=view.findViewById(R.id.textView);
+            layout=view.findViewById(R.id.square);
+
+
+            if(!lay.trim().equals("home"))
+            {
+                ViewGroup.LayoutParams params = layout.getLayoutParams();
+                params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                layout.setLayoutParams(params);
+            }
+
+
         }
     }
 
 
-    public GalleryAdapter(Context context, List<Image> images) {
+    public GalleryAdapter(Context context, List<Image> images, String lay) {
         mContext = context;
         this.images = images;
+        this.lay=lay;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.gallery_thumbnail, parent, false);
-
+        progressBar= new ProgressBar(mContext);
         return new MyViewHolder(itemView);
     }
 
@@ -56,12 +80,19 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Image image = images.get(position);
 
+
+
         Glide.with(mContext).load(image.getImage())
                 .thumbnail(0.5f)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+
                 .into(holder.thumbnail);
+
         holder.tv.setText(image.getProductname());
+
+
+
     }
 
     @Override

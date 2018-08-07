@@ -1,21 +1,38 @@
 package com.example.alkautherwater.fragments;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.alkautherwater.R;
+import com.example.alkautherwater.adapter.GalleryAdapter;
 import com.example.alkautherwater.adapter.MyCustomPagerAdapter;
+import com.example.alkautherwater.api.APIService;
+import com.example.alkautherwater.api.APIUrl;
+import com.example.alkautherwater.model.Image;
+import com.example.alkautherwater.model.Result;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
@@ -30,6 +47,14 @@ public class HomeFragment extends Fragment {
     MyCustomPagerAdapter myCustomPagerAdapter;
     CirclePageIndicator indicator;
 
+
+    private ProgressDialog pDialog;
+    private GalleryAdapter mAdapter;
+    private RecyclerView recyclerView;
+    ArrayList<Image> images;
+
+
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -43,9 +68,76 @@ public class HomeFragment extends Fragment {
         mPager = (ViewPager) root.findViewById(R.id.pager);
         indicator = (CirclePageIndicator) root.findViewById(R.id.indicator);
 
-
+        recyclerView =  root.findViewById(R.id.recycler_view);
+        images=new ArrayList<>();
+        pDialog = new ProgressDialog(getContext());
+        getProducts();
         init();
         return root;
+    }
+
+    private void getProducts() {
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(APIUrl.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        APIService service = retrofit.create(APIService.class);
+        Call<Result> call = service.getProduct();
+
+        call.enqueue(new Callback<Result>() {
+            @Override
+            public void onResponse(Call<Result> call, Response<Result> response) {
+
+                pDialog.hide();
+                mAdapter = new GalleryAdapter(getContext(), response.body().getItem(),"home");
+                RecyclerView.LayoutManager mLayoutManager   = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                recyclerView.setLayoutManager(mLayoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+                // Toast.makeText(MainActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                images= response.body().getItem();
+
+
+
+                recyclerView.addOnItemTouchListener(new GalleryAdapter.RecyclerTouchListener(getContext(), recyclerView, new GalleryAdapter.ClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("images", images);
+                        bundle.putInt("position", position);
+
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        SlideshowDialogFragment newFragment = SlideshowDialogFragment.newInstance();
+                        newFragment.setArguments(bundle);
+                        newFragment.show(ft, "slideshow");
+                    }
+
+                    @Override
+                    public void onLongClick(View view, int position) {
+
+                    }
+                }));
+
+
+
+
+
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
+                pDialog.hide();
+            }
+        });
+
     }
 
     private void init() {
