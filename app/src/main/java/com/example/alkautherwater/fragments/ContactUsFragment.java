@@ -70,18 +70,18 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
                     String email= et_email.getText().toString().trim();
                     String phone= et_phone.getText().toString().trim();
                     String message= et_msg.getText().toString().trim();
-                    if(!name.equals("")||!email.equals("")||!phone.equals("")||!message.equals(""))
+                    if(name.equals("")||email.equals("")||phone.equals("")||message.equals(""))
                     {
-                        contactUs(name,email,phone,message);
+                        Toast.makeText(getContext(), "please enter all fields", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
-                        Toast.makeText(getContext(), "please enter all fields", Toast.LENGTH_SHORT).show();
+                        contactUs(name,email,phone,message);
                     }
                 break;
 
             case R.id.cancel:
-
+                clearAll();
                 break;
             default:
                 Log.e("default","default case");
@@ -116,6 +116,15 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
                 Log.e("MyTag", "requestFailed", t);
             }
         });
+
+    }
+    private void clearAll() {
+
+        et_name.setText("");
+        et_email.setText("");
+        et_phone.setText("");
+        et_msg.setText("");
+
 
     }
 }

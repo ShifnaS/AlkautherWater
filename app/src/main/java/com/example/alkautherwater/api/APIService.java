@@ -17,7 +17,7 @@ public interface APIService {
     Call<Result> getProduct();
 
     @FormUrlEncoded
-    @POST("ContactUs")
+    @POST("ContatUs")
     Call<Results> contactUs(
             @Field("name") String name,
             @Field("email") String email,
@@ -27,11 +27,13 @@ public interface APIService {
     @FormUrlEncoded
     @POST("BuyProduct")
     Call<Results> buyProduct(
-            @Field("product_id") String product_id,
+            @Field("product_id") int product_id,
             @Field("quantity") String quantity,
             @Field("customer_name") String customer_name,
             @Field("phone") String phone,
             @Field("pincode") String pincode,
             @Field("address") String address
+
+
     );
 }

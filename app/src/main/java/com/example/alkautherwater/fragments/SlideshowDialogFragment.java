@@ -122,6 +122,8 @@ public class SlideshowDialogFragment extends DialogFragment {
            //     String id=image.getProduct_id();
                 Intent i=new Intent(getContext(), BuyProductActivity.class);
                 i.putExtra("id",image.getProduct_id());
+                i.putExtra("product_name",image.getProductname());
+                i.putExtra("product_price",image.getPrice());
                 getActivity().startActivity(i);
             }
         });

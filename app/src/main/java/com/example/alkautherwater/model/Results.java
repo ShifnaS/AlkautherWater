@@ -3,8 +3,9 @@ package com.example.alkautherwater.model;
 import com.google.gson.annotations.SerializedName;
 
 public class Results {
-    @SerializedName("item")
+    @SerializedName("message")
     private String message;
+    @SerializedName("error")
     private boolean error;
 
     public Results() {
