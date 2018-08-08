@@ -1,17 +1,19 @@
 package com.example.alkautherwater.fragments;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.alkautherwater.R;
@@ -31,9 +33,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ContactUsFragment extends Fragment implements View.OnClickListener{
 
-    EditText et_name,et_email,et_phone,et_msg;
-    Button bt_cancel,bt_send;
-    Toolbar toolbar;
+    private EditText et_name,et_email,et_phone,et_msg;
+    private Button bt_cancel,bt_send;
+    private Toolbar toolbar;
+    //defining AwesomeValidation object
+
     public ContactUsFragment() {
         // Required empty public constructor
     }
@@ -45,21 +49,25 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
         View root=inflater.inflate(R.layout.fragment_contact_us, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        toolbar=root.findViewById(R.id.toolbar);
+        toolbar.setTitle("Contact Address");
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+
+
         et_name=root.findViewById(R.id.name);
         et_email=root.findViewById(R.id.email);
         et_phone=root.findViewById(R.id.phone);
         et_msg=root.findViewById(R.id.message);
         bt_cancel=root.findViewById(R.id.cancel);
         bt_send=root.findViewById(R.id.send);
-
         bt_send.setOnClickListener(this);
         bt_cancel.setOnClickListener(this);
 
-        toolbar=root.findViewById(R.id.toolbar);
-        toolbar.setTitle("Contact Address");
-        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+
         return root;
     }
+
+
 
     @Override
     public void onClick(View view) {
@@ -70,13 +78,30 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
                     String email= et_email.getText().toString().trim();
                     String phone= et_phone.getText().toString().trim();
                     String message= et_msg.getText().toString().trim();
-                    if(name.equals("")||email.equals("")||phone.equals("")||message.equals(""))
+                    //process the data further
+                    if(name.equals(""))
                     {
-                        Toast.makeText(getContext(), "please enter all fields", Toast.LENGTH_SHORT).show();
+                        et_name.setError("name is required");
+
+                    }
+
+                    else if(isEmail(et_email)==false)
+                    {
+                        et_email.setError("enter valid email");
+                    }
+                    else if(phone.length()!=10||phone.equals(""))
+                    {
+                        et_phone.setError("enter valid phone number");
+                    }
+                    else if(message.equals(""))
+                    {
+                        et_msg.setError("message is required");
+
                     }
                     else
                     {
                         contactUs(name,email,phone,message);
+
                     }
                 break;
 
@@ -125,6 +150,16 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
         et_phone.setText("");
         et_msg.setText("");
 
+        et_name.setError(null);
+        et_email.setError(null);
+        et_phone.setError(null);
+        et_msg.setError(null);
 
     }
+    private boolean isEmail(EditText editText)
+    {
+        CharSequence txt=editText.getText().toString().trim();
+        return(!TextUtils.isEmpty(txt)&&Patterns.EMAIL_ADDRESS.matcher(txt).matches());
+    }
+
 }
