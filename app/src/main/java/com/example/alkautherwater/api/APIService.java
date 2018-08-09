@@ -13,26 +13,28 @@ import retrofit2.http.POST;
 
 public interface APIService {
 
-    @GET("Alkautherlogin/productdetails_json.php")
+    @GET("productdetails_json.php")
     Call<Result> getProduct();
 
     @FormUrlEncoded
-    @POST("Alkautherlogin/contact_json.php")
+    @POST("contactdetails_json.php")
     Call<Results> contactUs(
             @Field("name") String name,
             @Field("email") String email,
             @Field("phone") String phone,
-            @Field("message") String message
+            @Field("message") String message,
+            @Field("date") String date
     );
     @FormUrlEncoded
-    @POST("BuyProduct")
+    @POST("bookingdetails_json.php")
     Call<Results> buyProduct(
             @Field("product_id") int product_id,
             @Field("quantity") String quantity,
             @Field("customer_name") String customer_name,
             @Field("phone") String phone,
             @Field("pincode") String pincode,
-            @Field("address") String address
+            @Field("address") String address,
+            @Field("date") String date
 
 
     );

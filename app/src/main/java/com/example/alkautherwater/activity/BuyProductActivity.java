@@ -16,6 +16,10 @@ import com.example.alkautherwater.api.APIService;
 import com.example.alkautherwater.api.APIUrl;
 import com.example.alkautherwater.model.Results;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -140,15 +144,24 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
         et_phone.setError(null);
 
     }
+    private String getCurrDate()
+    {
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
 
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = df.format(c);
+        return  formattedDate;
+    }
     private void placeOrder(String quantity, String customer_name, String phone, String pincode, String address) {
+        String date=getCurrDate();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APIUrl.BASE_URL1)
+                .baseUrl(APIUrl.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         APIService service = retrofit.create(APIService.class);
-        Call<Results> call = service.buyProduct(product_id,quantity,customer_name,phone,pincode,address);
+        Call<Results> call = service.buyProduct(product_id,quantity,customer_name,phone,pincode,address,date);
         call.enqueue(new Callback<Results>() {
             @Override
             public void onResponse(Call<Results> call, Response<Results> response) {
@@ -156,7 +169,7 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
                    // Toast.makeText(getApplicationContext(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     if(response.body().getMessage().trim().equals("Successfully"))
                     {
-                        Toast.makeText(BuyProductActivity.this, "Your order is placed success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BuyProductActivity.this, "Your order is placed successfully", Toast.LENGTH_SHORT).show();
                         Intent i=new Intent(getApplicationContext(), Products.class);
                         startActivity(i);
                         finish();

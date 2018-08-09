@@ -25,6 +25,10 @@ import com.example.alkautherwater.api.APIService;
 import com.example.alkautherwater.api.APIUrl;
 import com.example.alkautherwater.model.Results;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -117,20 +121,31 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
 
         }
     }
+    private String getCurrDate()
+    {
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = df.format(c);
+        return  formattedDate;
+    }
     private void contactUs(String name,String email,String phone,String msg) {
 
+        String date=getCurrDate();
+        Toast.makeText(getContext(), ""+date, Toast.LENGTH_SHORT).show();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(APIUrl.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         APIService service = retrofit.create(APIService.class);
-        Call<Results> call = service.contactUs(name, email, phone, msg);
+        Call<Results> call = service.contactUs(name, email, phone, msg,date);
         call.enqueue(new Callback<Results>() {
             @Override
             public void onResponse(Call<Results> call, Response<Results> response) {
                 try {
-                      //Toast.makeText(getActivity(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(getActivity(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     if(response.body().getMessage().trim().equals("Successfully"))
                     {
                         Toast.makeText(getContext(), "Succesfully added", Toast.LENGTH_SHORT).show();
@@ -140,7 +155,7 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
                     }
                     else
                     {
-                        Toast.makeText(getContext(), "Failed to Contact", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                 }
