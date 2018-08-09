@@ -28,6 +28,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.alkautherwater.R;
 import com.example.alkautherwater.activity.BuyProductActivity;
+import com.example.alkautherwater.activity.Products;
 import com.example.alkautherwater.model.Image;
 
 import java.util.ArrayList;
@@ -64,9 +65,9 @@ public class SlideshowDialogFragment extends DialogFragment {
         toolbar=v.findViewById(R.id.toolbar);
         bt_buy=v.findViewById(R.id.buy);
         specification = v.findViewById(R.id.specification);
-        toolbar.setTitle("Product Details");
-      // toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-      /// ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        toolbar.setTitle("   Product Details");
+        toolbar.setLogo(R.drawable.ic_stat_arrow_back);
+
         images = (ArrayList<Image>) getArguments().getSerializable("images");
         selectedPosition = getArguments().getInt("position");
 
@@ -79,10 +80,37 @@ public class SlideshowDialogFragment extends DialogFragment {
 
         setCurrentItem(selectedPosition);
 
+        View logoView = getToolbarLogoView(toolbar);
+        logoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //logo clicked
+              Intent i=new Intent(getContext(), Products.class);
+              startActivity(i);
+              getActivity().finish();
 
+            }
+        });
         return v;
     }
-
+    public static View getToolbarLogoView(Toolbar toolbar){
+        //check if contentDescription previously was set
+        boolean hadContentDescription = android.text.TextUtils.isEmpty(toolbar.getLogoDescription());
+        String contentDescription = String.valueOf(!hadContentDescription ? toolbar.getLogoDescription() : "logoContentDescription");
+        toolbar.setLogoDescription(contentDescription);
+        ArrayList<View> potentialViews = new ArrayList<View>();
+        //find the view based on it's content description, set programatically or with android:contentDescription
+        toolbar.findViewsWithText(potentialViews,contentDescription, View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+        //Nav icon is always instantiated at this point because calling setLogoDescription ensures its existence
+        View logoIcon = null;
+        if(potentialViews.size() > 0){
+            logoIcon = potentialViews.get(0);
+        }
+        //Clear content description if not previously present
+        if(hadContentDescription)
+            toolbar.setLogoDescription(null);
+        return logoIcon;
+    }
     private void setCurrentItem(int position) {
         viewPager.setCurrentItem(position, false);
         displayMetaInfo(selectedPosition);

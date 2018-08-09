@@ -17,7 +17,7 @@ public interface APIService {
     Call<Result> getProduct();
 
     @FormUrlEncoded
-    @POST("ContatUs")
+    @POST("Alkautherlogin/contact_json.php")
     Call<Results> contactUs(
             @Field("name") String name,
             @Field("email") String email,

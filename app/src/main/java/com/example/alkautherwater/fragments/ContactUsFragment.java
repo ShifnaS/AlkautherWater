@@ -3,6 +3,7 @@ package com.example.alkautherwater.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -37,7 +38,6 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
     private Button bt_cancel,bt_send;
     private Toolbar toolbar;
     //defining AwesomeValidation object
-
     public ContactUsFragment() {
         // Required empty public constructor
     }
@@ -89,7 +89,7 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
                     {
                         et_email.setError("enter valid email");
                     }
-                    else if(phone.length()!=10||phone.equals(""))
+                    else if(phone.length()!=8||phone.equals(""))
                     {
                         et_phone.setError("enter valid phone number");
                     }
@@ -117,7 +117,7 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
     private void contactUs(String name,String email,String phone,String msg) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APIUrl.BASE_URL1)
+                .baseUrl(APIUrl.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -127,7 +127,15 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onResponse(Call<Results> call, Response<Results> response) {
                 try {
-                      Toast.makeText(getActivity(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                      //Toast.makeText(getActivity(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    if(response.body().getMessage().trim().equals("Successfully"))
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
 
                 }
                 catch (Exception e) {

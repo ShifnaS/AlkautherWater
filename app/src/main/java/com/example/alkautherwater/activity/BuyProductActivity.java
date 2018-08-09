@@ -82,9 +82,31 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
                 String phone= et_phone.getText().toString().trim();
                 String pincode= et_pincode.getText().toString().trim();
                 String address= et_address.getText().toString().trim();
-                if(quantity.equals("")||customer_name.equals("")||phone.equals("")||pincode.equals("")||address.equals(""))
+
+                if(quantity.equals(""))
                 {
-                    Toast.makeText(this, "please enter all fields", Toast.LENGTH_SHORT).show();
+                    et_quantity.setError("quantity is required");
+
+                }
+                else  if(customer_name.equals(""))
+                {
+                    et_customerName.setError("customer name is required");
+
+                }
+
+                else if(phone.length()!=8||phone.equals(""))
+                {
+                    et_phone.setError("enter valid phone number");
+                }
+                else if(pincode.length()!=3||pincode.equals(""))
+                {
+                    et_pincode.setError("enter a valid pincode");
+
+                }
+                else if(address.equals(""))
+                {
+                    et_address.setError("address is required");
+
                 }
                 else
                 {
@@ -110,6 +132,12 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
         et_pincode.setText("");
         et_address.setText("");
         et_phone.setText("");
+
+        et_customerName.setError(null);
+        et_quantity.setError(null);
+        et_pincode.setError(null);
+        et_address.setError(null);
+        et_phone.setError(null);
 
     }
 

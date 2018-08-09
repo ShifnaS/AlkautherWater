@@ -27,7 +27,6 @@
 
 
                 <EditText
-                    android:ems="10"
 
                     android:id="@+id/name"
                     android:background="@drawable/textarea"
