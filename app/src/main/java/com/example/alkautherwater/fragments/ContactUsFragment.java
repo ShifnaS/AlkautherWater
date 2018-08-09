@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.alkautherwater.R;
+import com.example.alkautherwater.activity.BuyProductActivity;
 import com.example.alkautherwater.activity.Products;
 import com.example.alkautherwater.api.APIService;
 import com.example.alkautherwater.api.APIUrl;
@@ -132,6 +133,7 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
                       //Toast.makeText(getActivity(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     if(response.body().getMessage().trim().equals("Successfully"))
                     {
+                        Toast.makeText(getContext(), "Succesfully added", Toast.LENGTH_SHORT).show();
                         Intent i=new Intent(getContext(), Products.class);
                         startActivity(i);
                         getActivity().finish();
