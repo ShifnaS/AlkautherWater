@@ -2,6 +2,7 @@ package com.example.alkautherwater.fragments;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.alkautherwater.R;
+import com.example.alkautherwater.activity.Products;
 import com.example.alkautherwater.api.APIService;
 import com.example.alkautherwater.api.APIUrl;
 import com.example.alkautherwater.model.Results;
@@ -130,11 +132,13 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
                       //Toast.makeText(getActivity(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     if(response.body().getMessage().trim().equals("Successfully"))
                     {
-
+                        Intent i=new Intent(getContext(), Products.class);
+                        startActivity(i);
+                        getActivity().finish();
                     }
                     else
                     {
-
+                        Toast.makeText(getContext(), "Failed to Contact", Toast.LENGTH_SHORT).show();
                     }
 
                 }

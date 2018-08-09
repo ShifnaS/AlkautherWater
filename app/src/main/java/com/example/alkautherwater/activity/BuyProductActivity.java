@@ -153,8 +153,17 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onResponse(Call<Results> call, Response<Results> response) {
                 try {
-                    Toast.makeText(getApplicationContext(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
+                   // Toast.makeText(getApplicationContext(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    if(response.body().getMessage().trim().equals("Successfully"))
+                    {
+                        Intent i=new Intent(getApplicationContext(), Products.class);
+                        startActivity(i);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Failed to make order", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 catch (Exception e) {
                     e.printStackTrace();
