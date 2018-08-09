@@ -156,6 +156,7 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
                    // Toast.makeText(getApplicationContext(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     if(response.body().getMessage().trim().equals("Successfully"))
                     {
+                        Toast.makeText(BuyProductActivity.this, "Your order is placed success", Toast.LENGTH_SHORT).show();
                         Intent i=new Intent(getApplicationContext(), Products.class);
                         startActivity(i);
                         finish();
