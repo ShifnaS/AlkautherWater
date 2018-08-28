@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "484927779262",
+    "firebase_url": "https://alkautherwater.firebaseio.com",
+    "project_id": "alkautherwater",
+    "storage_bucket": "alkautherwater.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484927779262:android:844d7b431ee35d71",
+        "android_client_info": {
+          "package_name": "com.example.alkautherwater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484927779262-gumu103plakkejb93bv8v16cgsflnmua.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alkautherwater",
+            "certificate_hash": "aeb53419098e5f651c95d659fe1b4569816e9e3b"
+          }
+        },
+        {
+          "client_id": "484927779262-01kf3og1m1ip2dkfh7p77a1lmhq2roed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKIhjybZxZfnIUStl5NoSGKk-x6p69PD8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484927779262-01kf3og1m1ip2dkfh7p77a1lmhq2roed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

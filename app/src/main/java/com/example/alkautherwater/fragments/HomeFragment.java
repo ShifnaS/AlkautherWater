@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.alkautherwater.R;
 import com.example.alkautherwater.adapter.GalleryAdapter;
@@ -52,7 +54,7 @@ public class HomeFragment extends Fragment {
     private GalleryAdapter mAdapter;
     private RecyclerView recyclerView;
     ArrayList<Image> images;
-
+    Button bt_order;
 
 
     public HomeFragment() {
@@ -71,7 +73,23 @@ public class HomeFragment extends Fragment {
         recyclerView =  root.findViewById(R.id.recycler_view);
         images=new ArrayList<>();
         pDialog = new ProgressDialog(getContext());
-        getProducts();
+        //getProducts();
+        bt_order=root.findViewById(R.id.order);
+        bt_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+              Fragment fragment = new ProductsFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+             //   fragmentManager.findFragmentById();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame1, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+
+            }
+        });
         init();
         return root;
     }

@@ -1,6 +1,7 @@
 package com.example.alkautherwater.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.example.alkautherwater.R;
 import com.example.alkautherwater.api.APIService;
 import com.example.alkautherwater.api.APIUrl;
+import com.example.alkautherwater.app.Config;
 import com.example.alkautherwater.model.Results;
 
 import java.text.SimpleDateFormat;
@@ -27,7 +29,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BuyProductActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText et_productName,et_price,et_quantity,et_customerName,et_email,et_phone,et_pincode,et_address;
+    EditText et_productName,et_quantity,et_customerName,et_phone,et_address;
     Button bt_cancel,bt_confirm;
     int product_id=0;
     @Override
@@ -46,15 +48,14 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
         String product_price=i.getStringExtra("product_price");
 
         et_productName=findViewById(R.id.pname);
-        et_price=findViewById(R.id.price);
+      //  et_price=findViewById(R.id.price);
         et_quantity=findViewById(R.id.quantity);
         et_customerName=findViewById(R.id.cname);
         et_phone=findViewById(R.id.phone);
-        et_pincode=findViewById(R.id.pincode);
         et_address=findViewById(R.id.address);
 
         et_productName.setText(product_name);
-        et_price.setText(product_price+" OMR (per unit)");
+       // et_price.setText(product_price+" OMR (per unit)");
 
         bt_cancel=findViewById(R.id.cancel);
         bt_confirm=findViewById(R.id.confirm);
@@ -84,8 +85,11 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
                 String quantity= et_quantity.getText().toString().trim();
                 String customer_name= et_customerName.getText().toString().trim();
                 String phone= et_phone.getText().toString().trim();
-                String pincode= et_pincode.getText().toString().trim();
                 String address= et_address.getText().toString().trim();
+
+                SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
+                String regId = pref.getString("regId", null);
+              //  Toast.makeText(this, ""+regId, Toast.LENGTH_SHORT).show();
 
                 if(quantity.equals(""))
                 {
@@ -102,11 +106,7 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
                 {
                     et_phone.setError("enter valid phone number");
                 }
-                else if(pincode.length()!=3||pincode.equals(""))
-                {
-                    et_pincode.setError("enter a valid pincode");
 
-                }
                 else if(address.equals(""))
                 {
                     et_address.setError("address is required");
@@ -114,7 +114,7 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
                 }
                 else
                 {
-                    placeOrder(quantity,customer_name,phone,pincode,address);
+                    placeOrder(quantity,customer_name,phone,address,regId);
                 }
                 break;
 
@@ -133,13 +133,11 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
 
         et_customerName.setText("");
         et_quantity.setText("");
-        et_pincode.setText("");
         et_address.setText("");
         et_phone.setText("");
 
         et_customerName.setError(null);
         et_quantity.setError(null);
-        et_pincode.setError(null);
         et_address.setError(null);
         et_phone.setError(null);
 
@@ -153,7 +151,9 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
         String formattedDate = df.format(c);
         return  formattedDate;
     }
-    private void placeOrder(String quantity, String customer_name, String phone, String pincode, String address) {
+    private void placeOrder(String quantity, String customer_name, String phone, String address,String regId)
+    {
+
         String date=getCurrDate();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(APIUrl.BASE_URL)
@@ -161,7 +161,7 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
                 .build();
 
         APIService service = retrofit.create(APIService.class);
-        Call<Results> call = service.buyProduct(product_id,quantity,customer_name,phone,pincode,address,date);
+        Call<Results> call = service.buyProduct(product_id,quantity,customer_name,phone,address,date,regId);
         call.enqueue(new Callback<Results>() {
             @Override
             public void onResponse(Call<Results> call, Response<Results> response) {

@@ -32,9 +32,9 @@ public interface APIService {
             @Field("quantity") String quantity,
             @Field("customer_name") String customer_name,
             @Field("phone") String phone,
-            @Field("pincode") String pincode,
             @Field("address") String address,
-            @Field("date") String date
+            @Field("date") String date,
+            @Field("fid") String fid
 
 
     );

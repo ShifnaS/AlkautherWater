@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.alkautherwater.activity.Products"
+    android:id="@+id/frame1"
     >
 
     <LinearLayout
@@ -55,11 +56,12 @@
                 android:gravity="top"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2.5"
                 android:layout_height="0dp">
 
 
                 <TextView
+                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
@@ -73,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:lineSpacingExtra="10dp"
+                        android:lineSpacingExtra="15dp"
                         android:layout_margin="10dp"
                         android:shadowColor="@color/colorPrimary"
                         android:layout_width="match_parent"
@@ -81,7 +83,7 @@
                         android:text="     Al kauther Water Factory is pleased to welcome you as you explore who we are and what we're all about."/>
 
                     <TextView
-                        android:lineSpacingExtra="10dp"
+                        android:lineSpacingExtra="15dp"
                         android:layout_margin="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -92,14 +94,22 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@drawable/back"
 
-                android:gravity="bottom"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:layout_height="0dp">
-                <TextView
+                <Button
+
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:id="@+id/order"
+                    android:text="Order Now"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="17sp"/>
+                <!--<TextView
                     android:layout_margin="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -113,7 +123,7 @@
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical" />-->
             </LinearLayout>
 
         </LinearLayout>

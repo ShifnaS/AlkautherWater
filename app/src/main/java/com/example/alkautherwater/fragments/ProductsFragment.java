@@ -1,6 +1,7 @@
 package com.example.alkautherwater.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.alkautherwater.R;
+import com.example.alkautherwater.activity.BuyProductActivity;
 import com.example.alkautherwater.adapter.GalleryAdapter;
 import com.example.alkautherwater.api.APIService;
 import com.example.alkautherwater.api.APIUrl;
@@ -81,7 +83,7 @@ public class ProductsFragment extends Fragment {
                 recyclerView.addOnItemTouchListener(new GalleryAdapter.RecyclerTouchListener(getContext(), recyclerView, new GalleryAdapter.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
-                        Bundle bundle = new Bundle();
+                     /*   Bundle bundle = new Bundle();
                         bundle.putSerializable("images", images);
                         bundle.putInt("position", position);
 
@@ -90,9 +92,16 @@ public class ProductsFragment extends Fragment {
                                 android.R.anim.fade_out);
                         SlideshowDialogFragment newFragment = SlideshowDialogFragment.newInstance();
                         newFragment.setArguments(bundle);
-                        newFragment.show(ft, "slideshow");
+                        newFragment.show(ft, "slideshow");*/
+
 
                         //   ft.commitAllowingStateLoss();
+                        Image image=images.get(position);
+                        Intent i=new Intent(getContext(), BuyProductActivity.class);
+                        i.putExtra("id",image.getProduct_id());
+                        i.putExtra("product_name",image.getProductname());
+                        i.putExtra("product_price",image.getPrice());
+                        getActivity().startActivity(i);
                     }
 
                     @Override
