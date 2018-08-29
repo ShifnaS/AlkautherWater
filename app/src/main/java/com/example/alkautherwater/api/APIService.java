@@ -3,6 +3,7 @@ package com.example.alkautherwater.api;
 
 
 import com.example.alkautherwater.model.Result;
+import com.example.alkautherwater.model.ResultNotification;
 import com.example.alkautherwater.model.Results;
 
 import retrofit2.Call;
@@ -25,6 +26,7 @@ public interface APIService {
             @Field("message") String message,
             @Field("date") String date
     );
+
     @FormUrlEncoded
     @POST("bookingdetails_json.php")
     Call<Results> buyProduct(
@@ -36,6 +38,7 @@ public interface APIService {
             @Field("date") String date,
             @Field("fid") String fid
 
-
     );
+
+
 }

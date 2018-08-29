@@ -28,9 +28,6 @@
         <activity android:name=".activity.FAQ" />
         <activity android:name=".activity.QAC" />
         <activity android:name=".activity.BuyProductActivity" />
-        <activity android:name=".activity.Main2Activity">
-
-        </activity>
 
         <!-- Firebase Notifications -->
         <service android:name=".service.MyFirebaseMessagingService">

@@ -20,6 +20,10 @@
         <item
             android:id="@+id/nav_contact"
             android:title="Contact Us" />
+
+        <item
+            android:id="@+id/nav_notification"
+            android:title="Notification" />
     </group>
 
     <item android:title="Help Centre">

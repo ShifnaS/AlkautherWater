@@ -74,28 +74,11 @@ public class ProductsFragment extends Fragment {
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
-                // Toast.makeText(MainActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
                 images= response.body().getItem();
-
-
-
                 recyclerView.addOnItemTouchListener(new GalleryAdapter.RecyclerTouchListener(getContext(), recyclerView, new GalleryAdapter.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
-                     /*   Bundle bundle = new Bundle();
-                        bundle.putSerializable("images", images);
-                        bundle.putInt("position", position);
 
-                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.setCustomAnimations(android.R.anim.fade_in,
-                                android.R.anim.fade_out);
-                        SlideshowDialogFragment newFragment = SlideshowDialogFragment.newInstance();
-                        newFragment.setArguments(bundle);
-                        newFragment.show(ft, "slideshow");*/
-
-
-                        //   ft.commitAllowingStateLoss();
                         Image image=images.get(position);
                         Intent i=new Intent(getContext(), BuyProductActivity.class);
                         i.putExtra("id",image.getProduct_id());

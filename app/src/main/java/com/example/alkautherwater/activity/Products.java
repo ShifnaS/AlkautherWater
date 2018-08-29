@@ -27,6 +27,8 @@ import android.widget.Toast;
 import com.example.alkautherwater.R;
 import com.example.alkautherwater.app.Config;
 import com.example.alkautherwater.fragments.*;
+import com.example.alkautherwater.helper.DBHelper;
+import com.example.alkautherwater.model.Notification;
 import com.example.alkautherwater.utils.NotificationUtils;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -58,7 +60,7 @@ public class Products extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
-
+        DBHelper obj=new DBHelper(getApplicationContext());
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -90,9 +92,8 @@ public class Products extends AppCompatActivity
 
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
-         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -234,6 +235,11 @@ public class Products extends AppCompatActivity
                 navItemIndex = 4;
                 CURRENT_TAG = TAG_CONTACT_US;
                 break;
+            case R.id.nav_notification:
+                // launch new intent instead of loading fragment
+                startActivity(new Intent(Products.this, NotificationActivity.class));
+                drawer.closeDrawers();
+                return true;
             case R.id.nav_qac:
                 // launch new intent instead of loading fragment
                 startActivity(new Intent(Products.this, QAC.class));

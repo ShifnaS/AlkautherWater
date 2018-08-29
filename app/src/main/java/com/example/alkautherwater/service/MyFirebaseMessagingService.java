@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.alkautherwater.activity.NotificationActivity;
 import com.example.alkautherwater.app.Config;
+import com.example.alkautherwater.helper.SQLiteOperations;
 import com.example.alkautherwater.utils.NotificationUtils;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -76,17 +77,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String title = data.getString("title");
             String message = data.getString("message");
             boolean isBackground = data.getBoolean("is_background");
-          //  String imageUrl = data.getString("image");
             String timestamp = data.getString("timestamp");
-           // JSONObject payload = data.getJSONObject("payload");
 
             Log.e(TAG, "title: " + title);
             Log.e(TAG, "message: " + message);
             Log.e(TAG, "isBackground: " + isBackground);
-          //  Log.e(TAG, "payload: " + payload.toString());
-         //   Log.e(TAG, "imageUrl: " + imageUrl);
             Log.e(TAG, "timestamp: " + timestamp);
 
+            SQLiteOperations sqLiteOperations=new SQLiteOperations(getApplicationContext());
+            sqLiteOperations.saveNotification(title,message);
 
             if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
                 // app is in foreground, broadcast the push message

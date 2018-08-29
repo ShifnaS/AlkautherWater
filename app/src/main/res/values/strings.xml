@@ -30,6 +30,7 @@ validation String
     <string name="messageerror">Enter a valid message</string>
     <string name="pincodeerror">Enter a valid pincode</string>
     <string name="quantityerror">Enter a valid quantity</string>
+
     <string name="lessthan2"><![CDATA[< 2]]></string>
     <string name="_0_03"><![CDATA[< 0.03]]></string>
     <string name="_1"><![CDATA[< 1]]></string>
