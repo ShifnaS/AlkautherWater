@@ -25,13 +25,14 @@
 
 
                 <EditText
+                    android:textColor="@color/colorPrimary"
                     android:id="@+id/pname"
                     android:enabled="false"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:background="@drawable/textarea"
-                    android:hint="Product Name"
+                    android:text="Product Name"
                     android:padding="5dp" />
 
             </LinearLayout>

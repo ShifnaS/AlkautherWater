@@ -41,7 +41,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ContactUsFragment extends Fragment implements View.OnClickListener{
 
-    private EditText et_name,et_email,et_phone,et_msg;
+    private EditText et_name,et_email,et_msg;
     private Button bt_cancel,bt_send;
     private Toolbar toolbar;
     //defining AwesomeValidation object
@@ -63,7 +63,6 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
 
         et_name=root.findViewById(R.id.name);
         et_email=root.findViewById(R.id.email);
-        et_phone=root.findViewById(R.id.phone);
         et_msg=root.findViewById(R.id.message);
         bt_cancel=root.findViewById(R.id.cancel);
         bt_send=root.findViewById(R.id.send);
@@ -83,7 +82,7 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
             case R.id.send:
                     String name= et_name.getText().toString().trim();
                     String email= et_email.getText().toString().trim();
-                    String phone= et_phone.getText().toString().trim();
+                    String phone= "";
                     String message= et_msg.getText().toString().trim();
                     //process the data further
                     if(name.equals(""))
@@ -96,10 +95,7 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
                     {
                         et_email.setError("enter valid email");
                     }
-                    else if(phone.length()!=8||phone.equals(""))
-                    {
-                        et_phone.setError("enter valid phone number");
-                    }
+
                     else if(message.equals(""))
                     {
                         et_msg.setError("message is required");
@@ -176,12 +172,10 @@ public class ContactUsFragment extends Fragment implements View.OnClickListener{
 
         et_name.setText("");
         et_email.setText("");
-        et_phone.setText("");
         et_msg.setText("");
 
         et_name.setError(null);
         et_email.setError(null);
-        et_phone.setError(null);
         et_msg.setError(null);
 
     }

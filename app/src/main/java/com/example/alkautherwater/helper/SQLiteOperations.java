@@ -53,7 +53,7 @@ public class SQLiteOperations {
         Notification notification;
         ArrayList<Notification> notificationList  = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String q="select * from tbl_notification";
+        String q="select * from tbl_notification ORDER BY datetime(order_date) DESC";
         cursor=db.rawQuery(q,null);
         if (cursor.moveToFirst()) {
             try

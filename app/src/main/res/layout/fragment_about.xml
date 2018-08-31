@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:lineSpacingExtra="8dp"
-        android:text="          AL KAUTHER, the leading producer of pure natural mineral water in the Salalah, was established in 2000. As a unique brand that has been holding the market leadership for the past 12 years, AL KAUTHER has today become a generic name for mineral and bottled water in the entire Salalah region. It has acquired this status symbol by providing world-class products known for their pure natural freshness. AL KAUTHER aims to strengthen its market leadership by constantly enhancing the excellence of its product through a process of continuous reinvestment and innovative manufacturing and marketing strategies. AL KAUTHER popularity in the region is largely due to its commitment to delivering superior quality products.
+        android:text="          AL KAUTHER, the leading producer of pure natural mineral water in Salalah, was established in 2000. As a unique brand that has been holding the market leadership for the past 18 years, AL KAUTHER has today become a generic name for mineral and bottled water in the entire Salalah region. It has acquired this status symbol by providing world-class products known for their pure natural freshness. AL KAUTHER aims to strengthen its market leadership by constantly enhancing the excellence of its product through a process of continuous reinvestment and innovative manufacturing and marketing strategies. AL KAUTHER'S popularity in the region is largely due to its commitment to delivering superior quality products.
 "/>
     <TextView
         android:textColor="@color/colorPrimary"

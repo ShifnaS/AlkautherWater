@@ -293,7 +293,7 @@
             android:layout_height="wrap_content"
             android:lineSpacingExtra="8dp"
             android:padding="15dp"
-            android:text="          Mineral waters of reputed brands, which have been bottled in accordance with international regulations and packed hygienically such as JEBEL SAMHAN, AL KAUTHER, are absolutely safe to use for cooking.  As a consumer you need to satisfy yourself that the product which you are buying is indeed natural mineral water.  In some parts of the world, regulations on labeling requirements of bottled water are quite vague and many brands, which are actually processed water, try to pass themselves off as natural mineral water. The most effective way of safeguarding against being misled is to check the source of water.  For example, products which have been bottled in industrial estates or city locations are invariably processed water or bottled drinking water and not natural mineral water.
+            android:text="          Mineral waters of reputed brands, which have been bottled in accordance with international regulations and packed hygienically such as AL KAUTHER, are absolutely safe to use for cooking.  As a consumer you need to satisfy yourself that the product which you are buying is indeed natural mineral water.  In some parts of the world, regulations on labeling requirements of bottled water are quite vague and many brands, which are actually processed water, try to pass themselves off as natural mineral water. The most effective way of safeguarding against being misled is to check the source of water.  For example, products which have been bottled in industrial estates or city locations are invariably processed water or bottled drinking water and not natural mineral water.
 " />
 
         <TextView
@@ -375,7 +375,7 @@
             android:layout_height="wrap_content"
             android:lineSpacingExtra="8dp"
             android:padding="15dp"
-            android:text="          Our Company produces mineral water in 2 brands – JEBEL SAMAHAN, AL KAUTHER. Such as 5 Gallon refilling bottles,5 gallon(20 Liters) disposable bottles, 8 Liter bottles, 6 Liter bottles. These brands are widely distributed in Salalah and half part of Oman.  If you are unable to find our brand in your nearest supermarket or Free deliveries at home in Salalah and Dhofar regions, please contact us on our office Telephone no. 23219162, 23219585 or Fax: 23219163. Friendly, informed sales personnel will contact you immediately to fulfill your needs and answer any questions." />
+            android:text="          AL KAUTHER WATER FACTORY produces bottled mineral water, such as 5 Gallon refilling bottles, 5 gallon(20 Liters) disposable bottles, 8 Liter bottles, 6 Liter bottles. These brands are widely distributed in Salalah and half part of Oman. If you are unable to find our brand in your nearest supermarket or Free deliveries at home in Salalah and Dhofar regions, please contact us on our office Telephone no. 23219162, 23219585 or Fax: 23219163. Friendly, informed sales personnel will contact you immediately to fulfill your needs and answer any questions." />
 
     </LinearLayout>
 </ScrollView>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +35,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class Products extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener  {
+    private View navHeader;
     DrawerLayout drawer;
     private Handler mHandler;
     private String[] activityTitles;
@@ -78,7 +80,7 @@ public class Products extends AppCompatActivity
 
                     String message = intent.getStringExtra("message");
 
-                    Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),  message, Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -104,6 +106,19 @@ public class Products extends AppCompatActivity
             CURRENT_TAG = TAG_HOME;
             loadHomeFragment();
         }
+        navHeader = navigationView.getHeaderView(0);
+        TextView  tv_url = navHeader.findViewById(R.id.url);
+        tv_url.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(Products.this, "dfdf", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("http://www.alkautherwater.com/"));
+                startActivity(intent);
+            }
+        });
     }
 
 
