@@ -23,6 +23,7 @@ import com.example.alkautherwater.model.ResultNotification;
 
 import java.util.ArrayList;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,15 +42,17 @@ public class NotificationActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Notifications");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
+        SQLiteOperations sqLiteOperations=new SQLiteOperations(getApplicationContext());
+        sqLiteOperations.clearData();
         recyclerView =  findViewById(R.id.recycler_view);
         notifications=new ArrayList<>();
         pDialog = new ProgressDialog(getApplicationContext());
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
         String regId = pref.getString("regId", null);
         //setNotification(regId);
-        SQLiteOperations sqLiteOperations=new SQLiteOperations(getApplicationContext());
         notifications= sqLiteOperations.getAllNotifications();
+        sqLiteOperations.updateStatus();
+        boolean success = ShortcutBadger.removeCount(getApplicationContext());
 
         if(notifications.isEmpty())
         {

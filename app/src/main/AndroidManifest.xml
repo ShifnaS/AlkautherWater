@@ -40,8 +40,10 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <!-- ./Firebase Notifications -->
         <activity android:name=".activity.NotificationActivity" />
+        <activity android:name=".activity.FreezerActivity"></activity>
     </application>
 
 </manifest>

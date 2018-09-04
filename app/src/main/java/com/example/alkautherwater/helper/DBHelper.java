@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String q="CREATE TABLE tbl_notification(ID INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT,message TEXT,order_date TEXT)";
+        String q="CREATE TABLE tbl_notification(ID INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT,message TEXT,order_date TEXT,status TEXT)";
         db.execSQL(q);
 
     }

@@ -38,7 +38,7 @@ dependencies {
     // RecyclerView
     //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-
+    implementation 'me.leolin:ShortcutBadger:1.1.8'
     // Glide
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.basgeekball:awesome-validation:2.0'

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.alkautherwater.activity.NotificationActivity;
 import com.example.alkautherwater.app.Config;
@@ -14,6 +15,8 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 
 /**
@@ -85,8 +88,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.e(TAG, "timestamp: " + timestamp);
 
             SQLiteOperations sqLiteOperations=new SQLiteOperations(getApplicationContext());
-            sqLiteOperations.saveNotification(title,message);
+            sqLiteOperations.saveNotification(title,message,0);
+            int count=sqLiteOperations.getcount(0);
 
+            ShortcutBadger.applyCount(getApplicationContext(),count);
             if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
                 // app is in foreground, broadcast the push message
                 Intent pushNotification = new Intent(Config.PUSH_NOTIFICATION);

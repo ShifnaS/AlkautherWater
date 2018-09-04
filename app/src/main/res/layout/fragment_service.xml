@@ -60,27 +60,51 @@
         android:padding="15dp"
         android:text="          Just call our telephone number 23219162 and set up an appointment. Our salesman will collect your cooler from your premises, give you a temporary replacement and return your cooler after sanitization, usually within a period of one week.
 " />
-  <!--  <TextView
+   <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:padding="10dp"
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
-        android:text="Freezer And Cold Water 200ML Supply
-"/>-->
-   <!-- <View
+        android:text="Freezer And Cold Water Supply
+"/>
+   <View
         android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <TextView
+        android:textColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
         android:lineSpacingExtra="8dp"
-        android:text="          We have cold room facility for cold water required customers. We are giving Freezer vehicle per day rent basis with water or without water
-
-"/>-->
+        android:padding="15dp"
+        android:text="          We have cold room facility for cold water required customers. We are giving Freezer vehicle per day rent basis with water or without water"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimary"
+        android:text="Where to buy from?"/>
+    <TextView
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="8dp"
+        android:padding="15dp"
+        android:text="          Al Kauther water is available from any supermarkets across Oman-Salalah. Al Kauther is also available from a large number of independent retailers,We offer a mail order home delivery service in Salalah. Please feel free to order our products using our online booking application.
+" />
+    <Button
+        android:id="@+id/order_id"
+        android:layout_gravity="right"
+        android:background="@drawable/shape"
+        android:textColor="#FFF"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ORDER NOW"/>
 
 </LinearLayout>
 </ScrollView>

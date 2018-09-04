@@ -1,10 +1,12 @@
 package com.example.alkautherwater.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -12,12 +14,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import com.example.alkautherwater.R;
+import com.example.alkautherwater.app.Config;
 
 public class MainActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 3100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -44,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         }, SPLASH_TIME_OUT);
+
+      //  SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
+      //  String regId = pref.getString("regId", null);
+      //  Log.e("regId",regId);
     }
 
     private void RunAnimation() {

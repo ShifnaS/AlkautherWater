@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
@@ -22,6 +24,7 @@
             android:title="Contact Us" />
 
         <item
+            app:actionViewClass="android.widget.TextView"
             android:id="@+id/nav_notification"
             android:title="Notification" />
     </group>

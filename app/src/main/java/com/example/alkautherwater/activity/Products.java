@@ -5,20 +5,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -29,6 +33,7 @@ import com.example.alkautherwater.R;
 import com.example.alkautherwater.app.Config;
 import com.example.alkautherwater.fragments.*;
 import com.example.alkautherwater.helper.DBHelper;
+import com.example.alkautherwater.helper.SQLiteOperations;
 import com.example.alkautherwater.model.Notification;
 import com.example.alkautherwater.utils.NotificationUtils;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -51,7 +56,7 @@ public class Products extends AppCompatActivity
     public static int navItemIndex = 0;
 
     NavigationView navigationView;
-
+    TextView notification;
     //notification
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -63,6 +68,9 @@ public class Products extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
         DBHelper obj=new DBHelper(getApplicationContext());
+        SQLiteOperations sqLiteOperations=new SQLiteOperations(getApplicationContext());
+
+       
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -119,6 +127,22 @@ public class Products extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        notification=(TextView) MenuItemCompat.getActionView(navigationView.getMenu().
+                findItem(R.id.nav_notification));
+        int count=sqLiteOperations.getcount(0);
+        initializeCountDrawer(count);
+        
+    }
+
+    private void initializeCountDrawer(int count) {
+
+
+        notification.setGravity(Gravity.CENTER_VERTICAL);
+        notification.setTypeface(null, Typeface.BOLD);
+        notification.setTextColor(getResources().getColor(R.color.colorAccent));
+        notification.setText(count > 0 ? String.valueOf(count) : null);
+
     }
 
 
@@ -131,7 +155,6 @@ public class Products extends AppCompatActivity
 
 
     }
-
 
 
 
