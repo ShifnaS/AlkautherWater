@@ -1,7 +1,10 @@
 package com.example.alkautherwater.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,8 +44,18 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(MainActivity.this, Products.class);
-                startActivity(i);
+                if(!isNetworkAvailable()) {
+
+                    Intent i = new Intent(MainActivity.this, RefreshActivity.class);
+                    startActivity(i);
+                }
+                else
+                {
+                    Intent i = new Intent(MainActivity.this, Products.class);
+                    startActivity(i);
+
+                }
+
 
                 // close this activity
                 finish();
@@ -65,5 +78,11 @@ public class MainActivity extends AppCompatActivity {
         ll.startAnimation(a);
       //  tv.clearAnimation();
         //tv.startAnimation(a);
+    }
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

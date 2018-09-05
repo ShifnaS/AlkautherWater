@@ -3,6 +3,7 @@
     package="com.example.alkautherwater">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -43,7 +44,8 @@
 
         <!-- ./Firebase Notifications -->
         <activity android:name=".activity.NotificationActivity" />
-        <activity android:name=".activity.FreezerActivity"></activity>
+        <activity android:name=".activity.FreezerActivity" />
+        <activity android:name=".activity.RefreshActivity"></activity>
     </application>
 
 </manifest>

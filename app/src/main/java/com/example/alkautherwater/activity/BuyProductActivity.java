@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +34,7 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
     EditText et_productName,et_quantity,et_customerName,et_phone,et_address;
     Button bt_cancel,bt_confirm;
     int product_id=0;
+    private boolean isReached = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,30 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
 
         bt_confirm.setOnClickListener(this);
         bt_cancel.setOnClickListener(this);
+
+
+        et_address.addTextChangedListener(new TextWatcher(){
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // if edittext has 10chars & this is not called yet, add new line
+                if(et_address.getText().length() == 50 && !isReached) {
+                    et_address.append("\n");
+                    isReached = true;
+                }
+                // if edittext has less than 10chars & boolean has changed, reset
+                if(et_address.getText().length() < 50 && isReached) isReached = false;
+            }
+        });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

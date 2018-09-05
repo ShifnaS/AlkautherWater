@@ -133,7 +133,9 @@
                     android:background="@drawable/textarea"
                     android:gravity="top"
                     android:hint="Address"
-                    android:inputType="text"
+                    android:inputType="text|textMultiLine|textCapSentences"
+                    android:maxLines="15"
+                    android:singleLine="false"
                     android:padding="5dp" />
             </LinearLayout>
 

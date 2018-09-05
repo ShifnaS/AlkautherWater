@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -67,6 +69,7 @@ public class Products extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
+
         DBHelper obj=new DBHelper(getApplicationContext());
         SQLiteOperations sqLiteOperations=new SQLiteOperations(getApplicationContext());
 
@@ -96,18 +99,18 @@ public class Products extends AppCompatActivity
 
         displayFirebaseRegId();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mHandler = new Handler();
 
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         if (savedInstanceState == null) {
             navItemIndex = 0;
@@ -132,8 +135,11 @@ public class Products extends AppCompatActivity
                 findItem(R.id.nav_notification));
         int count=sqLiteOperations.getcount(0);
         initializeCountDrawer(count);
-        
+
+
+
     }
+
 
     private void initializeCountDrawer(int count) {
 
