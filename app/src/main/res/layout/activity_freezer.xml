@@ -9,31 +9,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_margin="15dp"
+                android:layout_width="280dp"
+                android:layout_height="180dp"
+                android:background="@drawable/f1"
+                android:scaleType="fitXY"
+                android:scaleX="1"
+                android:scaleY="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="5dp">
 
 
-                <Spinner
+                <TextView
                     android:textColor="@color/colorPrimary"
-                    android:id="@+id/pname"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:id="@+id/quantity"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:background="@drawable/spinner_item"
-                    android:padding="5dp" />
+                    android:text="Date Of Requirement"
+                    android:inputType="number"
+                    android:padding="2dp" />
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,43 +55,39 @@
                 android:padding="10dp">
 
 
-                <EditText
-                    android:id="@+id/quantity"
+                <TextView
+                    android:id="@+id/fromdate"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
                     android:background="@drawable/textarea"
-                    android:hint="Quantity"
-                    android:inputType="number"
-                    android:padding="5dp" />
+                    android:hint="From"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/todate"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:background="@drawable/textarea"
+                    android:hint="To"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"/>
 
             </LinearLayout>
-          <!--  <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp">
 
-
-                <EditText
-                    android:id="@+id/date"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@drawable/textarea"
-                    android:hint="Date of Requirement"
-                    android:inputType="number"
-                    android:padding="5dp" />
-
-            </LinearLayout>-->
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 app:title="Customer Details"
-                app:titleTextColor="#fff"
-                />
+                app:titleTextColor="#fff" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -135,8 +144,8 @@
                     android:hint="Address"
                     android:inputType="text|textMultiLine|textCapSentences"
                     android:maxLines="15"
-                    android:singleLine="false"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:singleLine="false" />
             </LinearLayout>
 
             <LinearLayout
@@ -148,21 +157,21 @@
 
                 <Button
                     android:id="@+id/confirm"
-                    android:textColor="#FFF"
-                    android:background="@drawable/shape"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
-                    android:text="Confirm" />
+                    android:background="@drawable/shape"
+                    android:text="Confirm"
+                    android:textColor="#FFF" />
 
                 <Button
-                    android:background="@drawable/shape"
-                    android:textColor="#FFF"
                     android:id="@+id/cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
-                    android:text="Cancel" />
+                    android:background="@drawable/shape"
+                    android:text="Cancel"
+                    android:textColor="#FFF" />
             </LinearLayout>
         </LinearLayout>
 

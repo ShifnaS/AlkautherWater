@@ -1,5 +1,8 @@
 package com.example.alkautherwater.activity;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +20,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -43,39 +47,52 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class FreezerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener{
+public class FreezerActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Spinner sp;
     ArrayList<String> productsList;
     ArrayList<Integer> productidList;
-    ArrayList<Image> images;
-    EditText et_quantity,et_customerName,et_phone,et_address;
+    EditText et_customerName,et_phone,et_address;
+    TextView from_date,to_date;
     Button bt_cancel,bt_confirm;
-    int product_id;
     private boolean isReached = false;
+    private ProgressDialog progress;
+    private Calendar calendar;
 
+    private int year, month, day;
+    private int toyear, tomonth, today;
+    //DatePickerDialog.OnDateSetListener from_dateListener,to_dateListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Buy Product");
+        getSupportActionBar().setTitle("Freezer and Cold Water Supply");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         setContentView(R.layout.activity_freezer);
-        sp=findViewById(R.id.pname);
-        et_quantity=findViewById(R.id.quantity);
         et_customerName=findViewById(R.id.cname);
         et_phone=findViewById(R.id.phone);
         et_address=findViewById(R.id.address);
+        from_date=findViewById(R.id.fromdate);
+        to_date=findViewById(R.id.todate);
+
+
         productsList=new ArrayList<String>();
         productidList=new ArrayList<Integer>();
-        getProducts();
-        sp.setOnItemSelectedListener(this);
         bt_cancel=findViewById(R.id.cancel);
         bt_confirm=findViewById(R.id.confirm);
 
         bt_confirm.setOnClickListener(this);
         bt_cancel.setOnClickListener(this);
+        from_date.setOnClickListener(this);
+        to_date.setOnClickListener(this);
 
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        toyear = calendar.get(Calendar.YEAR);
+        tomonth = calendar.get(Calendar.MONTH);
+        today = calendar.get(Calendar.DAY_OF_MONTH);
 
         et_address.addTextChangedListener(new TextWatcher(){
             @Override
@@ -101,16 +118,55 @@ public class FreezerActivity extends AppCompatActivity implements AdapterView.On
         });
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        Image image=images.get(i);
-        product_id = image.getProduct_id();
-    }
+
+
+
 
     @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        switch(id){
+            case 0:
+                return new DatePickerDialog(this,
+                        from_dateListener, year, month, day);
+            case 1:
+                return new DatePickerDialog(this,
+                        to_dateListener, toyear, tomonth, today);
+        }
 
+        return null;
     }
+
+    private DatePickerDialog.OnDateSetListener from_dateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+                    // arg1 = year
+                    // arg2 = month
+                    // arg3 = day
+                    from_date.setText(new StringBuilder().append(arg3).append("/")
+                            .append(arg2+1).append("/").append(arg1));
+                }
+            };
+
+    private DatePickerDialog.OnDateSetListener to_dateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+                    // arg1 = year
+                    // arg2 = month
+                    // arg3 = day
+                    to_date.setText(new StringBuilder().append(arg3).append("/")
+                            .append(arg2+1).append("/").append(arg1));
+                }
+            };
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -125,59 +181,27 @@ public class FreezerActivity extends AppCompatActivity implements AdapterView.On
         return super.onOptionsItemSelected(item);
     }
 
-    private void getProducts() {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APIUrl.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        APIService service = retrofit.create(APIService.class);
-        Call<Result> call = service.getProduct();
-
-        call.enqueue(new Callback<Result>() {
-            @Override
-            public void onResponse(Call<Result> call, Response<Result> response) {
-                images= response.body().getItem();
-                for(int i=0;i<images.size();i++)
-                {
-                    Image image=images.get(i);
-                    productsList.add( image.getProductname());
-                    productidList.add(image.getProduct_id());
-                }
-                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, productsList);
-                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                sp.setAdapter(dataAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<Result> call, Throwable t) {
-            }
-        });
-
-    }
 
     @Override
     public void onClick(View view) {
         switch(view.getId())
         {
             case R.id.confirm:
-                String quantity= et_quantity.getText().toString().trim();
+                bt_confirm.setEnabled(false);
+
                 String customer_name= et_customerName.getText().toString().trim();
                 String phone= et_phone.getText().toString().trim();
                 String address= et_address.getText().toString().trim();
+                String fromdate= from_date.getText().toString().trim();
+                String todate= to_date.getText().toString().trim();
 
                 SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
                 String regId = pref.getString("regId", null);
                 Log.e("fid",""+regId);
                 // Toast.makeText(this, ""+regId, Toast.LENGTH_SHORT).show();
                 //  et_quantity.setText(regId);
-                if(quantity.equals(""))
-                {
-                    et_quantity.setError("quantity is required");
-
-                }
-                else  if(customer_name.equals(""))
+                 if(customer_name.equals(""))
                 {
                     et_customerName.setError("customer name is required");
 
@@ -195,12 +219,19 @@ public class FreezerActivity extends AppCompatActivity implements AdapterView.On
                 }
                 else
                 {
-                    placeOrder(quantity,customer_name,phone,address,regId);
+                    placeOrder(todate,customer_name,phone,address,regId,fromdate);
                 }
                 break;
 
             case R.id.cancel:
                 clearAll();
+                break;
+            case R.id.fromdate:
+                showDialog(0);
+
+                break;
+            case R.id.todate:
+                showDialog(1);
 
                 break;
             default:
@@ -212,12 +243,10 @@ public class FreezerActivity extends AppCompatActivity implements AdapterView.On
     private void clearAll() {
 
         et_customerName.setText("");
-        et_quantity.setText("");
         et_address.setText("");
         et_phone.setText("");
 
         et_customerName.setError(null);
-        et_quantity.setError(null);
         et_address.setError(null);
         et_phone.setError(null);
 
@@ -231,18 +260,25 @@ public class FreezerActivity extends AppCompatActivity implements AdapterView.On
         String formattedDate = df.format(c);
         return  formattedDate;
     }
-    private void placeOrder(String quantity, String customer_name, String phone, String address,String regId)
+    private void placeOrder(String todate, String customer_name, String phone, String address,String regId,String fromdate)
     {
-     //   Toast.makeText(this, ""+product_id, Toast.LENGTH_SHORT).show();
-
         String date=getCurrDate();
+
+        progress=new ProgressDialog(this);
+        progress.setMessage("Please wait");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setIndeterminate(true);
+        progress.setCancelable(false);
+        progress.setCanceledOnTouchOutside(false);
+        progress.show();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(APIUrl.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         APIService service = retrofit.create(APIService.class);
-        Call<Results> call = service.buyProduct(product_id,quantity,customer_name,phone,address,date,regId);
+        Call<Results> call = service.buyFreezer(todate,customer_name,phone,address,fromdate,regId,date);
         call.enqueue(new Callback<Results>() {
             @Override
             public void onResponse(Call<Results> call, Response<Results> response) {
@@ -259,8 +295,12 @@ public class FreezerActivity extends AppCompatActivity implements AdapterView.On
                     {
                         Toast.makeText(getApplicationContext(), "Failed to make order", Toast.LENGTH_SHORT).show();
                     }
+                    bt_confirm.setEnabled(true);
+                    progress.dismiss();
                 }
                 catch (Exception e) {
+                    bt_confirm.setEnabled(true);
+                    progress.dismiss();
                     e.printStackTrace();
                 }
 
@@ -268,6 +308,8 @@ public class FreezerActivity extends AppCompatActivity implements AdapterView.On
 
             @Override
             public void onFailure(Call<Results> call, Throwable t) {
+                bt_confirm.setEnabled(true);
+                progress.dismiss();
                 Log.e("MyTag", "requestFailed", t);
             }
         });

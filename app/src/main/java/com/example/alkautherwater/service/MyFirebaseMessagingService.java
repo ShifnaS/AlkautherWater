@@ -16,7 +16,6 @@ import com.google.firebase.messaging.RemoteMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import me.leolin.shortcutbadger.ShortcutBadger;
 
 
 /**
@@ -91,7 +90,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             sqLiteOperations.saveNotification(title,message,0);
             int count=sqLiteOperations.getcount(0);
 
-            ShortcutBadger.applyCount(getApplicationContext(),count);
+           // ShortcutBadger.applyCount(getApplicationContext(),count);
             if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
                 // app is in foreground, broadcast the push message
                 Intent pushNotification = new Intent(Config.PUSH_NOTIFICATION);

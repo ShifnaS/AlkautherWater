@@ -1,5 +1,6 @@
 package com.example.alkautherwater.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,8 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
     Button bt_cancel,bt_confirm;
     int product_id=0;
     private boolean isReached = false;
+    private ProgressDialog progress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +112,7 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
         switch(view.getId())
         {
             case R.id.confirm:
+                bt_confirm.setEnabled(false);
                 String quantity= et_quantity.getText().toString().trim();
                 String customer_name= et_customerName.getText().toString().trim();
                 String phone= et_phone.getText().toString().trim();
@@ -182,6 +186,14 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
     private void placeOrder(String quantity, String customer_name, String phone, String address,String regId)
     {
 
+        progress=new ProgressDialog(this);
+        progress.setMessage("Please wait");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setIndeterminate(true);
+        progress.setCancelable(false);
+        progress.setCanceledOnTouchOutside(false);
+        progress.show();
+
         String date=getCurrDate();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(APIUrl.BASE_URL)
@@ -201,21 +213,31 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
                         Intent i=new Intent(getApplicationContext(), Products.class);
                         startActivity(i);
                         finish();
+                        bt_confirm.setEnabled(true);
+                        progress.dismiss();
                     }
                     else
                     {
+                        bt_confirm.setEnabled(true);
+                        progress.dismiss();
                         Toast.makeText(getApplicationContext(), "Failed to make order", Toast.LENGTH_SHORT).show();
                     }
                 }
                 catch (Exception e) {
                     e.printStackTrace();
+                    bt_confirm.setEnabled(true);
+                    progress.dismiss();
+
                 }
 
             }
 
             @Override
             public void onFailure(Call<Results> call, Throwable t) {
+                bt_confirm.setEnabled(true);
+                progress.dismiss();
                 Log.e("MyTag", "requestFailed", t);
+
             }
         });
     }

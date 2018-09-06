@@ -23,7 +23,6 @@ import com.example.alkautherwater.model.ResultNotification;
 
 import java.util.ArrayList;
 
-import me.leolin.shortcutbadger.ShortcutBadger;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +51,7 @@ public class NotificationActivity extends AppCompatActivity {
         //setNotification(regId);
         notifications= sqLiteOperations.getAllNotifications();
         sqLiteOperations.updateStatus();
-        boolean success = ShortcutBadger.removeCount(getApplicationContext());
+       // boolean success = ShortcutBadger.removeCount(getApplicationContext());
 
         if(notifications.isEmpty())
         {

@@ -54,6 +54,9 @@ public class ProductsFragment extends Fragment {
 
     private void getProducts() {
         pDialog.setMessage("Loading...");
+      //  pDialog.setIndeterminate(true);
+        pDialog.setCancelable(false);
+        pDialog.setCanceledOnTouchOutside(false);
         pDialog.show();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(APIUrl.BASE_URL)
@@ -85,6 +88,7 @@ public class ProductsFragment extends Fragment {
                         i.putExtra("product_name",image.getProductname());
                         i.putExtra("product_price",image.getPrice());
                         getActivity().startActivity(i);
+                        pDialog.dismiss();
                     }
 
                     @Override

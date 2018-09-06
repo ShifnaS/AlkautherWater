@@ -39,6 +39,17 @@ public interface APIService {
             @Field("fid") String fid
 
     );
+    @FormUrlEncoded
+    @POST("servicedetails_json.php")
+    Call<Results> buyFreezer(
+            @Field("todate") String todate,
+            @Field("customer_name") String customer_name,
+            @Field("phone") String phone,
+            @Field("address") String address,
+            @Field("fromdate") String fromdate,
+            @Field("fid") String fid,
+            @Field("date") String date
 
+    );
 
 }
