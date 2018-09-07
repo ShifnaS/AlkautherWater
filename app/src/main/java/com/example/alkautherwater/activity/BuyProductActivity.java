@@ -112,7 +112,6 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
         switch(view.getId())
         {
             case R.id.confirm:
-                bt_confirm.setEnabled(false);
                 String quantity= et_quantity.getText().toString().trim();
                 String customer_name= et_customerName.getText().toString().trim();
                 String phone= et_phone.getText().toString().trim();
@@ -209,23 +208,20 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
                    // Toast.makeText(getApplicationContext(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     if(response.body().getMessage().trim().equals("Successfully"))
                     {
-                        Toast.makeText(BuyProductActivity.this, "Your order is placed successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BuyProductActivity.this, "Order Received we will make a confirmation soon", Toast.LENGTH_SHORT).show();
                         Intent i=new Intent(getApplicationContext(), Products.class);
                         startActivity(i);
                         finish();
-                        bt_confirm.setEnabled(true);
                         progress.dismiss();
                     }
                     else
                     {
-                        bt_confirm.setEnabled(true);
                         progress.dismiss();
                         Toast.makeText(getApplicationContext(), "Failed to make order", Toast.LENGTH_SHORT).show();
                     }
                 }
                 catch (Exception e) {
                     e.printStackTrace();
-                    bt_confirm.setEnabled(true);
                     progress.dismiss();
 
                 }
@@ -234,7 +230,6 @@ public class BuyProductActivity extends AppCompatActivity implements View.OnClic
 
             @Override
             public void onFailure(Call<Results> call, Throwable t) {
-                bt_confirm.setEnabled(true);
                 progress.dismiss();
                 Log.e("MyTag", "requestFailed", t);
 

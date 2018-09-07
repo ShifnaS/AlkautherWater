@@ -188,7 +188,6 @@ public class FreezerActivity extends AppCompatActivity implements View.OnClickLi
         switch(view.getId())
         {
             case R.id.confirm:
-                bt_confirm.setEnabled(false);
 
                 String customer_name= et_customerName.getText().toString().trim();
                 String phone= et_phone.getText().toString().trim();
@@ -286,7 +285,7 @@ public class FreezerActivity extends AppCompatActivity implements View.OnClickLi
                     // Toast.makeText(getApplicationContext(), "data "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     if(response.body().getMessage().trim().equals("Successfully"))
                     {
-                        Toast.makeText(FreezerActivity.this, "Your order is placed successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FreezerActivity.this, "Order Received we will make a confirmation soon", Toast.LENGTH_SHORT).show();
                         Intent i=new Intent(getApplicationContext(), Products.class);
                         startActivity(i);
                         finish();
@@ -295,11 +294,9 @@ public class FreezerActivity extends AppCompatActivity implements View.OnClickLi
                     {
                         Toast.makeText(getApplicationContext(), "Failed to make order", Toast.LENGTH_SHORT).show();
                     }
-                    bt_confirm.setEnabled(true);
                     progress.dismiss();
                 }
                 catch (Exception e) {
-                    bt_confirm.setEnabled(true);
                     progress.dismiss();
                     e.printStackTrace();
                 }
@@ -308,7 +305,6 @@ public class FreezerActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onFailure(Call<Results> call, Throwable t) {
-                bt_confirm.setEnabled(true);
                 progress.dismiss();
                 Log.e("MyTag", "requestFailed", t);
             }
