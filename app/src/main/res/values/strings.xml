@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">AlkautherWater</string>
+    <string name="app_name">Al Kauther Water</string>
     <string name="title_activity_home1">Home1Activity</string>
+    <string name="channel_name">channel1</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

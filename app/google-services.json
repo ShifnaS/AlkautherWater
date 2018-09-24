@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:484927779262:android:844d7b431ee35d71",
         "android_client_info": {
-          "package_name": "infogateway.sample.alkautherwater"
+          "package_name": "infogateway.alkautherwater"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "484927779262-gumu103plakkejb93bv8v16cgsflnmua.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "infogateway.sample.alkautherwater",
+            "package_name": "infogateway.alkautherwater",
             "certificate_hash": "aeb53419098e5f651c95d659fe1b4569816e9e3b"
           }
         },

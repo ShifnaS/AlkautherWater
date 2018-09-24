@@ -70,6 +70,14 @@
                     android:id="@+id/message"
                     android:layout_marginLeft="5dp"
                     android:textColor="#666"/>
+                <ImageButton
+                    android:src="@mipmap/ic_delete"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/delete"
+                    android:layout_marginLeft="5dp"
+                    />
 
             </LinearLayout>
 
