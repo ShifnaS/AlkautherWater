@@ -38,8 +38,8 @@ public class NotificationActivity extends AppCompatActivity {
         pDialog = new ProgressDialog(getApplicationContext());
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
         String regId = pref.getString("regId", null);
-        //setNotification(regId);
-       // notifications= sqLiteOperations.getAllNotifications();
+      //  setNotification(regId);
+        notifications= sqLiteOperations.getAllNotifications();
         sqLiteOperations.updateStatus();
        // boolean success = ShortcutBadger.removeCount(getApplicationContext());
 

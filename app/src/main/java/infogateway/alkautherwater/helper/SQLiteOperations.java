@@ -61,6 +61,13 @@ public class SQLiteOperations {
         db.delete("tbl_notification", "order_date <= ?", new String[]{String.valueOf(lastday)});
         db.close();
     }
+
+    public void deleteNotification(int id)
+    {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete("tbl_notification", "ID = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
     public void updateStatus()
     {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -83,6 +90,7 @@ public class SQLiteOperations {
         String TITLE="title";
         String MSG="message";
         String DATE="order_date";
+        String ID="ID";
         Notification notification;
         ArrayList<Notification> notificationList  = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -93,6 +101,7 @@ public class SQLiteOperations {
             {
                 do {
                     notification=new Notification();
+                    int id=cursor.getInt(cursor.getColumnIndex(ID));
                     String title=cursor.getString(cursor.getColumnIndex(TITLE));
                     String message=cursor.getString(cursor.getColumnIndex(MSG));
                     String date=cursor.getString(cursor.getColumnIndex(DATE));
@@ -100,6 +109,7 @@ public class SQLiteOperations {
                     notification.setTitle(title);
                     notification.setMessage(message);
                     notification.setDate(date);
+                    notification.setId(id);
                     notificationList.add(notification) ;
                 } while (cursor.moveToNext());
             }

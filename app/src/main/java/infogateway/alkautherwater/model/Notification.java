@@ -4,11 +4,21 @@ public class Notification {
     private String Title;
     private String Message;
     private String date;
+    private int id;
 
-    public Notification(String title, String message, String date) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Notification(String title, String message, String date,int id) {
         Title = title;
         Message = message;
         this.date = date;
+        this.id=id;
     }
 
     public Notification() {

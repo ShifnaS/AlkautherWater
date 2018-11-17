@@ -2,11 +2,13 @@ package infogateway.alkautherwater.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -17,12 +19,15 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +39,7 @@ import infogateway.alkautherwater.fragments.ContactUsFragment;
 import infogateway.alkautherwater.fragments.HomeFragment;
 import infogateway.alkautherwater.fragments.ProductsFragment;
 import infogateway.alkautherwater.fragments.ServiceFragment;
+import infogateway.alkautherwater.helper.AppPreferences;
 import infogateway.alkautherwater.helper.DBHelper;
 import infogateway.alkautherwater.helper.SQLiteOperations;
 import infogateway.alkautherwater.utils.NotificationUtils;
@@ -41,6 +47,8 @@ import infogateway.alkautherwater.R;
 
 public class Products extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener  {
+
+
     private View navHeader;
     DrawerLayout drawer;
     private Handler mHandler;
@@ -59,7 +67,7 @@ public class Products extends AppCompatActivity
     NavigationView navigationView;
     TextView notification;
     //notification
-
+    int  mlaunchCount=0;
     private static final String TAG = MainActivity.class.getSimpleName();
     private BroadcastReceiver mRegistrationBroadcastReceiver;
 
@@ -67,7 +75,17 @@ public class Products extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home2);
+        this.setFinishOnTouchOutside(true);
+
+        //////rate start
+        AppPreferences.getInstance(getApplicationContext()).incrementLaunchCount();
+        mlaunchCount= AppPreferences.getInstance(getApplicationContext()).getLaunchCount();
+
+        showRateAppDialogIfNeeded();
+        ////rate end
+
 
         DBHelper obj=new DBHelper(getApplicationContext());
         SQLiteOperations sqLiteOperations=new SQLiteOperations(getApplicationContext());
@@ -138,8 +156,76 @@ public class Products extends AppCompatActivity
 
 
     }
+//rate me
+    private void showRateAppDialogIfNeeded() {
+        boolean bool = AppPreferences.getInstance(getApplicationContext()).getAppRate();
+        int i = AppPreferences.getInstance(getApplicationContext()).getLaunchCount();
+        if ((bool) && (i == 5)) {
+            createAppRatingDialog(getString(R.string.rate_app_title), getString(R.string.rate_app_message)).show();
+        }
+    }
 
+    private AlertDialog createAppRatingDialog(String rateAppTitle, String rateAppMessage) {
+        AlertDialog dialog = new AlertDialog.Builder(this).setPositiveButton(getString(R.string.dialog_app_rate), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt) {
+                //openAppInPlayStore(getApplicationContext());
+                rateMe();
+                AppPreferences.getInstance(getApplicationContext()).setAppRate(false);
+            }
+        }).setNegativeButton(getString(R.string.dialog_your_feedback), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt) {
+                openFeedback(getApplicationContext());
+              //  AppPreferences.getInstance(getApplicationContext()).resetLaunchCount();
+                AppPreferences.getInstance(getApplicationContext()).setAppRate(false);
+            }
+        }).setNeutralButton(getString(R.string.dialog_ask_later), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt) {
+                paramAnonymousDialogInterface.dismiss();
+                AppPreferences.getInstance(getApplicationContext()).resetLaunchCount();
+            }
+        }).setMessage(rateAppMessage).setTitle(rateAppTitle).create();
+        dialog.setCanceledOnTouchOutside(false);
+        return dialog;
+    }
+    public static void openFeedback(Context paramContext) {
+        Intent localIntent = new Intent(Intent.ACTION_SEND);
+        localIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"sq7150@hotmail.com"});
+        localIntent.putExtra(Intent.EXTRA_CC, "");
+        String str = null;
+        try {
+            str = paramContext.getPackageManager().getPackageInfo(paramContext.getPackageName(), 0).versionName;
+            localIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback for Al Kauther Water App");
 
+            localIntent.setType("message/rfc822");
+            paramContext.startActivity(Intent.createChooser(localIntent, "Choose an Email client :"));
+        } catch (Exception e) {
+            Log.d("OpenFeedback", e.getMessage());
+        }
+    }
+
+  /*  public static void openAppInPlayStore(Context paramContext) {
+        paramContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/")));
+    }*/
+/*  public  void rateMe() {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=infogateway.sample.alkautherwater")));
+        } catch (android.content.ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
+        }
+    }*/
+
+    public  void rateMe() {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                 Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
+        } catch (android.content.ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
+        }
+    }
+    ///rate me end
     private void initializeCountDrawer(int count) {
 
 
